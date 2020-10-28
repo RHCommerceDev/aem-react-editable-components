@@ -149,6 +149,12 @@ export class Container<P extends ContainerProperties, S extends ContainerState> 
     }
 
     public render() {
+        const isPublishedMode = !this.props.isInEditor;
+
+        if (isPublishedMode) {
+            return this.childComponents as any;
+        }
+
         return (
             <div {...this.containerProps}>
                 { this.childComponents }

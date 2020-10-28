@@ -106,6 +106,12 @@ class EditableComponent<P extends MappedComponentProperties, S extends Container
     public render() {
         const WrappedComponent: React.ComponentType<any> = this.props.wrappedComponent;
 
+        const isPublishedMode = !this.props.componentProperties.isInEditor;
+
+        if (isPublishedMode) {
+            return <WrappedComponent {...this.state}/>;
+        }
+
         return (
           <div {...this.editProps} {...this.props.containerProps}>
             <WrappedComponent {...this.state}/>
